@@ -45,6 +45,9 @@
 #include <stdlib.h>
 #include <strings.h>
 #include <unistd.h>
+#if defined(__linux__)
+#include <grp.h>
+#endif
 
 #include "pjdlog.h"
 #include "sandbox.h"
