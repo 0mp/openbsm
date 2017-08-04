@@ -31,7 +31,11 @@
 
 #include <config/config.h>
 
+#ifdef HAVE_SYS_DIRENT_H
 #include <sys/dirent.h>
+#else	/* !HAVE_SYS_DIRENT_H */
+#include <dirent.h>
+#endif  /* !HAVE_SYS_DIRENT_H */
 #ifdef HAVE_FULL_QUEUE_H
 #include <sys/queue.h>
 #else	/* !HAVE_FULL_QUEUE_H */
