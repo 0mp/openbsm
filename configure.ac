@@ -230,6 +230,15 @@ AC_TRY_LINK([
 	AC_MSG_RESULT([using compat/endian_enc.h])
 ])
 
+# Check if asprintf requires _GNU_SOURCE
+AC_TRY_LINK([
+    #include <stdio.h>
+    extern int asprintf(char **strp, const char *fmt, ...);
+], [], [], [
+	AC_DEFINE(USE_GNU_SOURCE_FOR_ASPRINTF,, Define if _GNU_SOURCE is required for asprintf)
+])
+
+
 # Check to see if Mach IPC is used for trigger messages.  If so, use Mach IPC
 # instead of the default for sending trigger messages to the audit components.
 AC_CHECK_FILE([/usr/include/mach/audit_triggers.defs], [

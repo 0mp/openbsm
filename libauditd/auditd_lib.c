@@ -33,6 +33,10 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef USE_GNU_SOURCE_FOR_ASPRINTF
+#define _GNU_SOURCE
+#endif
+
 #include <sys/param.h>
 
 #include <config/config.h>
