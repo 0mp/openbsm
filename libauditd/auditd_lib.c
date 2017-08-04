@@ -52,6 +52,9 @@
 #include <compat/queue.h>
 #endif /* !HAVE_FULL_QUEUE_H */
 #include <sys/mount.h>
+#ifndef HAVE_STATFS_IN_MOUNT_H
+#include <sys/vfs.h>
+#endif
 #include <sys/socket.h>
 
 #include <sys/stat.h>

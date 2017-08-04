@@ -238,6 +238,14 @@ AC_TRY_LINK([
 	AC_DEFINE(USE_GNU_SOURCE_FOR_ASPRINTF,, Define if _GNU_SOURCE is required for asprintf)
 ])
 
+AC_TRY_LINK([
+	#include <sys/param.h>
+	#include <sys/mount.h>
+], [
+	extern statfs(const char *path, struct statfs *buf);
+], [
+AC_DEFINE(HAVE_STATFS_IN_MOUNT_H,, Define if sys/mount.h includes statfs)
+])
 
 # Check to see if Mach IPC is used for trigger messages.  If so, use Mach IPC
 # instead of the default for sending trigger messages to the audit components.
