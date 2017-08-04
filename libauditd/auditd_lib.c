@@ -90,6 +90,10 @@
 #include <compat/strlcpy.h>
 #endif
 
+#ifndef HAVE_STRLCAT
+#include <compat/strlcat.h>
+#endif
+
 /*
  * XXX This is temporary until this is moved to <bsm/audit.h> and shared with
  * the kernel.
