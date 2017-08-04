@@ -1076,11 +1076,11 @@ auditd_gen_record(int event, char *path)
 	struct auditinfo_addr aia;
 
 	if (event == AUE_audit_startup)
-		asprintf(&autext, "%s::Audit startup", getprogname());
+		asprintf(&autext, "%s::Audit startup", "openbsm");
 	else if (event == AUE_audit_shutdown)
-		asprintf(&autext, "%s::Audit shutdown", getprogname());
+		asprintf(&autext, "%s::Audit shutdown", "openbsm");
 	else if (event == AUE_audit_recovery)
-		asprintf(&autext, "%s::Audit recovery", getprogname());
+		asprintf(&autext, "%s::Audit recovery", "openbsm");
 	else
 		return (ADE_INVAL);
 	if (autext == NULL)
