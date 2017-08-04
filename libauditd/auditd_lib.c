@@ -83,6 +83,10 @@
 #endif /* __BSM_INTERNAL_NOTIFY_KEY */
 #endif /* __APPLE__ */
 
+#ifndef HAVE_STRLCPY
+#include <compat/strlcpy.h>
+#endif
+
 /*
  * XXX This is temporary until this is moved to <bsm/audit.h> and shared with
  * the kernel.
