@@ -43,6 +43,7 @@
 #endif	/* !HAVE_FULL_QUEUE_H */
 #include <sys/mman.h>
 #include <sys/param.h>
+#include <sys/file.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
 
