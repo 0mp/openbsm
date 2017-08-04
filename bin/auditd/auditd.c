@@ -462,7 +462,9 @@ register_daemon(void)
 	}
 
 	pid = getpid();
-	ftruncate(fd, 0);
+	if (ftruncate(fd, 0) == -1) {
+        /* NOTREACHED */
+    }
 	if (fprintf(pidfile, "%u\n", pid) < 0) {
 		/* Should not start the daemon. */
 		fail_exit();
