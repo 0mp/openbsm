@@ -470,7 +470,7 @@ auditd_expire_trails(int (*warn_expired)(char *))
 			/*
 			 * Quickly filter non-trail files.
 			 */
-			if (dp->d_namlen < FILENAME_LEN ||
+			if (strlen(dp->d_name) < FILENAME_LEN ||
 			    dp->d_name[POSTFIX_LEN] != '.')
 				continue;
 
