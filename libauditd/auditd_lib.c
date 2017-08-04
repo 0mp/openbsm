@@ -519,9 +519,9 @@ auditd_expire_trails(int (*warn_expired)(char *))
 
 				tstamp = stbuf.st_mtime = current_time;
 				TIMESPEC_TO_TIMEVAL(&tv[0],
-				    &stbuf.st_atime);
+				    (struct timespec *)(&stbuf.st_atime));
 				TIMESPEC_TO_TIMEVAL(&tv[1],
-				    &stbuf.st_mtime);
+				    (struct timespec *)(&stbuf.st_mtime));
 				utimes(pn, tv);
 			}
 
