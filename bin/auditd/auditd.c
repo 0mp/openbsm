@@ -804,15 +804,10 @@ main(int argc, char **argv)
 			debug = 1;
 			break;
 
-		case 'l':
-			/* Be launchd friendly. */
-			launchd_flag = 1;
-			break;
-
 		case '?':
 		default:
 			(void)fprintf(stderr,
-			    "usage: auditd [-d] [-l]\n");
+			    "usage: auditd [-d]\n");
 			exit(1);
 		}
 	}
@@ -821,10 +816,7 @@ main(int argc, char **argv)
 
 	auditd_openlog(debug, audit_review_gid);
 
-	if (launchd_flag)
-		auditd_log_info("started by launchd...");
-	else
-		auditd_log_info("starting...");
+	auditd_log_info("starting...");
 
 	if (debug == 0 && launchd_flag == 0 && daemon(0, 0) == -1) {
 		auditd_log_err("Failed to daemonize");
