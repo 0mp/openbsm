@@ -54,7 +54,7 @@
 
 /*
  * Path of auditd plist file for launchd.
- */ 
+ */
 #define	AUDITD_PLIST_FILE 	\
 	    "/System/Library/LaunchDaemons/com.apple.auditd.plist"
 
@@ -71,11 +71,11 @@
 #define	ADE_AU_OPEN	 -7	/* au_open(3) failed. */
 #define	ADE_AU_CLOSE	 -8	/* au_close(3) failed. */
 #define	ADE_SETAUDIT	 -9	/* setaudit(2) or setaudit_addr(2) failed. */
-#define	ADE_ACTL	-10	/* "Soft" error with auditctl(2). */ 
+#define	ADE_ACTL	-10	/* "Soft" error with auditctl(2). */
 #define	ADE_ACTLERR	-11	/* "Hard" error with auditctl(2). */
-#define	ADE_SWAPERR	-12	/* The audit trail file could not be swap. */ 
+#define	ADE_SWAPERR	-12	/* The audit trail file could not be swap. */
 #define	ADE_RENAME	-13	/* Error renaming crash recovery file. */
-#define	ADE_READLINK	-14	/* Error reading 'current' link. */	
+#define	ADE_READLINK	-14	/* Error reading 'current' link. */
 #define	ADE_SYMLINK	-15	/* Error creating 'current' link. */
 #define	ADE_INVAL	-16	/* Invalid argument. */
 #define	ADE_GETADDR	-17	/* Error resolving address from hostname. */
@@ -99,7 +99,6 @@ int auditd_set_qsize(void);
 int auditd_set_host(void);
 int auditd_swap_trail(char *TS, char **newfile, gid_t gid,
     int (*warn_getacdir)(char *));
-int auditd_prevent_audit(void);
 int auditd_gen_record(int event, char *path);
 int auditd_new_curlink(char *curfile);
 int auditd_rename(const char *fromname, const char *toname);

@@ -1071,12 +1071,6 @@ audit_quick_start(void)
 	int ret = 0;
 
 	/*
-	 * Mask auditing of this process.
-	 */
-	if (auditd_prevent_audit() != 0)
-		return (-1);
-
-	/*
 	 * Read audit_control and get log directories.
 	 */
 	err = auditd_read_dirs(NULL, NULL);
