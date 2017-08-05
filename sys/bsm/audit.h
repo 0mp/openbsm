@@ -70,7 +70,7 @@
 /*
  * The special device filename (FreeBSD).
  */
-#define	AUDITDEV_FILENAME	"audit"
+#define	AUDITDEV_FILENAME	"openbsmaudit"
 #define	AUDIT_TRIGGER_FILE	("/dev/" AUDITDEV_FILENAME)
 
 /*
