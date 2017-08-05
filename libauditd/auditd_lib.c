@@ -695,28 +695,6 @@ auditd_close_dirs(void)
 }
 
 /*
- * Get the non-attributable event string and set the kernel mask.  Return:
- *	ADE_NOERR	on success,
- *	ADE_PARSE	error parsing audit_control(5),
- *	ADE_AUDITON	error setting the mask using auditon(2).
- */
-int
-auditd_set_namask(void)
-{
-	au_mask_t aumask;
-	char naeventstr[NA_EVENT_STR_SIZE];
-
-	if (getacna(naeventstr, NA_EVENT_STR_SIZE) != 0 ||
-	    getauditflagsbin(naeventstr, &aumask) != 0)
-		return (ADE_PARSE);
-
-	if (audit_set_kmask(&aumask, sizeof(aumask)) != 0)
-		return (ADE_AUDITON);
-
-	return (ADE_NOERR);
-}
-
-/*
  * Set the audit control policy if a policy is configured in audit_control(5),
  * implement the policy. However, if one isn't defined or if there is an error
  * parsing the control file, set AUDIT_CNT to avoid leaving the system in a

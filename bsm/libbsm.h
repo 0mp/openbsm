@@ -1360,7 +1360,6 @@ int audit_set_cond(int *cond);
 int audit_get_cwd(char *path, size_t sz);
 int audit_get_fsize(au_fstat_t *fstat, size_t sz);
 int audit_get_kmask(au_mask_t *kmask, size_t sz);
-int audit_set_kmask(au_mask_t *kmask, size_t sz);
 int audit_get_kaudit(auditinfo_addr_t *aia, size_t sz);
 int audit_set_kaudit(auditinfo_addr_t *aia, size_t sz);
 int audit_set_pmask(auditpinfo_t *api, size_t sz);

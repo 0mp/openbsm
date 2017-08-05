@@ -718,17 +718,6 @@ audit_get_kmask(au_mask_t *kmask, size_t sz)
 }
 
 int
-audit_set_kmask(au_mask_t *kmask, size_t sz)
-{
-	if (sizeof(*kmask) != sz) {
-		errno = EINVAL;
-		return (-1);
-	}
-
-	return (auditon(A_SETKMASK, kmask, sz));
-}
-
-int
 audit_get_fsize(au_fstat_t *fstat, size_t sz)
 {
 

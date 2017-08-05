@@ -648,17 +648,6 @@ auditd_config_controls(void)
 	int ret = 0;
 
 	/*
-	 * Configure non-attributable event mask in kernel.
-	 */
-	err = auditd_set_namask();
-	if (err) {
-		auditd_log_err("auditd_set_namask() %s: %m",
-		    auditd_strerror(err));
-		ret = -1;
-	} else
-		auditd_log_debug("Registered non-attributable event mask.");
-
-	/*
 	 * Configure audit policy in kernel.
 	 */
 	err = auditd_set_policy();
