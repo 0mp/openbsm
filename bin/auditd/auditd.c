@@ -818,11 +818,6 @@ main(int argc, char **argv)
 
 	auditd_log_info("starting...");
 
-	if (debug == 0 && daemon(0, 0) == -1) {
-		auditd_log_err("Failed to daemonize");
-		exit(1);
-	}
-
 	if (register_daemon() == -1) {
 		auditd_log_err("Could not register as daemon");
 		exit(1);
