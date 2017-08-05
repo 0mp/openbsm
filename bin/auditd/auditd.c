@@ -796,9 +796,6 @@ main(int argc, char **argv)
 {
 	int ch;
 	int debug = 0;
-#ifdef AUDIT_REVIEW_GROUP
-	struct group *grp;
-#endif
 
 	while ((ch = getopt(argc, argv, "dl")) != -1) {
 		switch(ch) {
@@ -822,16 +819,6 @@ main(int argc, char **argv)
 
 	audit_review_gid = getgid();
 
-#ifdef AUDIT_REVIEW_GROUP
-	/*
-	 * XXXRW: Currently, this code falls back to the daemon gid, which is
-	 * likely the wheel group.  Is there a better way to deal with this?
-	 */
-	grp = getgrnam(AUDIT_REVIEW_GROUP);
-	if (grp != NULL)
-		audit_review_gid = grp->gr_gid;
-#endif
-
 	auditd_openlog(debug, audit_review_gid);
 
 	if (launchd_flag)
@@ -839,12 +826,6 @@ main(int argc, char **argv)
 	else
 		auditd_log_info("starting...");
 
-#ifdef AUDIT_REVIEW_GROUP
-	if (grp == NULL)
-		auditd_log_info(
-		    "Audit review group '%s' not available, using daemon gid (%d)",
-		    AUDIT_REVIEW_GROUP, audit_review_gid);
-#endif
 	if (debug == 0 && launchd_flag == 0 && daemon(0, 0) == -1) {
 		auditd_log_err("Failed to daemonize");
 		exit(1);

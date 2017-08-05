@@ -37,13 +37,6 @@
 #define	MAX_DIR_SIZE	255
 #define	AUDITD_NAME	"auditd"
 
-/*
- * If defined, then the audit daemon will attempt to chown newly created logs
- * to this group.  Otherwise, they will be the default for the user running
- * auditd, likely the audit group.
- */
-#define	AUDIT_REVIEW_GROUP	"audit"
-
 #define	HARDLIM_ALL_WARN	"allhard"
 #define	SOFTLIM_ALL_WARN	"allsoft"
 #define	AUDITOFF_WARN		"auditoff"
