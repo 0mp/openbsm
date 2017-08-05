@@ -1008,54 +1008,6 @@ auditd_swap_trail(char *TS, char **newfile, gid_t gid,
 }
 
 /*
- * Mask calling process from being audited. Returns:
- *	ADE_NOERR	on success,
- *	ADE_SETAUDIT	if setaudit(2) fails.
- */
-#ifdef __APPLE__
-int
-auditd_prevent_audit(void)
-{
-	auditinfo_addr_t aia;
-
-	/*
-	 * To prevent event feedback cycles and avoid audit becoming stalled if
-	 * auditing is suspended we mask this processes events from being
-	 * audited.  We allow the uid, tid, and mask fields to be implicitly
-	 * set to zero, but do set the audit session ID to the PID.
-	 *
-	 * XXXRW: Is there more to it than this?
-	 */
-	bzero(&aia, sizeof(aia));
-	aia.ai_asid = AU_ASSIGN_ASID;
-	aia.ai_termid.at_type = AU_IPv4;
-	if (setaudit_addr(&aia, sizeof(aia)) != 0)
-		return (ADE_SETAUDIT);
-	return (ADE_NOERR);
-}
-#else
-int
-auditd_prevent_audit(void)
-{
-	auditinfo_t ai;
-
-	/*
-	 * To prevent event feedback cycles and avoid audit becoming stalled if
-	 * auditing is suspended we mask this processes events from being
-	 * audited.  We allow the uid, tid, and mask fields to be implicitly
-	 * set to zero, but do set the audit session ID to the PID.
-	 *
-	 * XXXRW: Is there more to it than this?
-	 */
-	bzero(&ai, sizeof(ai));
-	ai.ai_asid = getpid();
-	if (setaudit(&ai) != 0)
-		return (ADE_SETAUDIT);
-	return (ADE_NOERR);
-}
-#endif /* !__APPLE__ */
-
-/*
  * Generate and submit audit record for audit startup or shutdown.  The event
  * argument can be AUE_audit_recovery, AUE_audit_startup or
  * AUE_audit_shutdown. The path argument will add a path token, if not NULL.

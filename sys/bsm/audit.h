@@ -249,14 +249,14 @@ typedef	struct au_token	token_t;
 /*
  * Kernel audit queue control parameters:
  * 			Default:		Maximum:
- * 	aq_hiwater:	AQ_HIWATER (100)	AQ_MAXHIGH (10000) 
+ * 	aq_hiwater:	AQ_HIWATER (100)	AQ_MAXHIGH (10000)
  * 	aq_lowater:	AQ_LOWATER (10)		<aq_hiwater
  * 	aq_bufsz:	AQ_BUFSZ (32767)	AQ_MAXBUFSZ (1048576)
- * 	aq_delay:	20			20000 (not used) 
+ * 	aq_delay:	20			20000 (not used)
  */
 struct au_qctrl {
 	int	aq_hiwater;	/* Max # of audit recs in queue when */
-				/* threads with new ARs get blocked. */ 
+				/* threads with new ARs get blocked. */
 
 	int	aq_lowater;	/* # of audit recs in queue when */
 				/* blocked threads get unblocked. */
@@ -326,7 +326,6 @@ int	auditctl(const char *);
 int	getauid(au_id_t *);
 int	setauid(const au_id_t *);
 int	getaudit(struct auditinfo *);
-int	setaudit(const struct auditinfo *);
 int	getaudit_addr(struct auditinfo_addr *, int);
 int	setaudit_addr(const struct auditinfo_addr *, int);
 

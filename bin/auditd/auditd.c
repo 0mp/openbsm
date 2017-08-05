@@ -764,21 +764,6 @@ setup(void)
 	}
 
 	/*
-	 * To prevent event feedback cycles and avoid auditd becoming
-	 * stalled if auditing is suspended, auditd and its children run
-	 * without their events being audited.  We allow the uid, tid, and
-	 * mask fields to be implicitly set to zero, but do set the pid.  We
-	 * run this after opening the trigger device to avoid configuring
-	 * audit state without audit present in the system.
-	 */
-	err = auditd_prevent_audit();
-	if (err) {
-		auditd_log_err("auditd_prevent_audit() %s: %m",
-		    auditd_strerror(err));
-		fail_exit();
-	}
-
-	/*
 	 * Make sure auditd auditing state is correct.
 	 */
 	auditd_set_state(AUD_STATE_INIT);
