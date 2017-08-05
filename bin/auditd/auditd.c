@@ -385,19 +385,6 @@ close_all(void)
 		auditd_log_err("auditd_gen_record(AUE_audit_shutdown) %s: %m",
 		    auditd_strerror(err));
 
-	/* Flush contents. */
-	cond = AUC_DISABLED;
-	err_ret = audit_set_cond(&cond);
-	if (err_ret != 0) {
-		auditd_log_err("Disabling audit failed! : %s", strerror(errno));
-		err_ret = 1;
-	}
-
-	/*
-	 * Updated the cached state that auditing has been disabled.
-	 */
-	auditd_set_state(AUD_STATE_DISABLED);
-
 	if (getTSstr(tt, TS, sizeof(TS)) == 0)
 		close_lastfile(TS);
 	if (lastfile != NULL)
