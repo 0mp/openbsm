@@ -818,7 +818,7 @@ main(int argc, char **argv)
 
 	auditd_log_info("starting...");
 
-	if (debug == 0 && launchd_flag == 0 && daemon(0, 0) == -1) {
+	if (debug == 0 && daemon(0, 0) == -1) {
 		auditd_log_err("Failed to daemonize");
 		exit(1);
 	}
