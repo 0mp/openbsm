@@ -133,19 +133,7 @@ auditd_log_debug(const char *fmt, ...)
 static void
 init_audit_state(void)
 {
-	int au_cond;
-
-	if (audit_get_cond(&au_cond) < 0) {
-		if (errno != ENOSYS) {
-			auditd_log_err("Audit status check failed (%s)",
-			    strerror(errno));
-		}
-		auditing_state = AUD_STATE_DISABLED;
-	} else
-		if (au_cond == AUC_NOAUDIT || au_cond == AUC_DISABLED)
-			auditing_state = AUD_STATE_DISABLED;
-		else
-			auditing_state = AUD_STATE_ENABLED;
+	return;
 }
 
 /*
