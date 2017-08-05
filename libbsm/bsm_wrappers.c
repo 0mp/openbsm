@@ -741,18 +741,6 @@ audit_get_fsize(au_fstat_t *fstat, size_t sz)
 }
 
 int
-audit_set_fsize(au_fstat_t *fstat, size_t sz)
-{
-
-	if (sizeof(*fstat) != sz) {
-		errno = EINVAL;
-		return (-1);
-	}
-
-	return (auditon(A_SETFSIZE, fstat, sz));
-}
-
-int
 audit_set_pmask(auditpinfo_t *api, size_t sz)
 {
 

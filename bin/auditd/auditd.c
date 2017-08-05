@@ -670,17 +670,6 @@ auditd_config_controls(void)
 		auditd_log_debug("Set audit policy in kernel.");
 
 	/*
-	 * Configure audit trail log size in kernel.
-	 */
-	err = auditd_set_fsize();
-	if (err) {
-		auditd_log_err("audit_set_fsize() %s: %m",
-		    auditd_strerror(err));
-		ret = -1;
-	} else
-		auditd_log_debug("Set audit trail size in kernel.");
-
-	/*
 	 * Configure audit trail queue size in kernel.
 	 */
 	err = auditd_set_qsize();
