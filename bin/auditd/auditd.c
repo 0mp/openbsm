@@ -648,19 +648,6 @@ auditd_config_controls(void)
 	int ret = 0;
 
 	/*
-	 * Configure event to class mappings in kernel.
-	 */
-	cnt = auditd_set_evcmap();
-	if (cnt < 0) {
-		auditd_log_err("auditd_set_evcmap() failed: %m");
-		ret = -1;
-	} else if (cnt == 0) {
-		auditd_log_err("No events to class mappings registered.");
-		ret = -1;
-	} else
-		auditd_log_debug("Registered %d event to class mappings.", cnt);
-
-	/*
 	 * Configure non-attributable event mask in kernel.
 	 */
 	err = auditd_set_namask();

@@ -902,7 +902,7 @@ void			 au_print_flags_tok(FILE *outfp, tokenstr_t *tok,
 void			 au_print_tok_xml(FILE *outfp, tokenstr_t *tok,
 			    char *del, char raw, char sfrm);
 
-/* 
+/*
  * Functions relating to XML output.
  */
 void			 au_print_xml_header(FILE *outfp);
@@ -1353,7 +1353,6 @@ void audit_token_to_au32(
  */
 int audit_get_car(char *path, size_t sz);
 int audit_get_class(au_evclass_map_t *evc_map, size_t sz);
-int audit_set_class(au_evclass_map_t *evc_map, size_t sz);
 int audit_get_event(au_evname_map_t *evn_map, size_t sz);
 int audit_set_event(au_evname_map_t *evn_map, size_t sz);
 int audit_get_cond(int *cond);
