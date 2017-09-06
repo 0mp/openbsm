@@ -343,8 +343,8 @@ auditd_set_minfree(void)
 	if (getacmin(&auditd_minval) != 0)
 		return (ADE_PARSE);
 
-	if (audit_get_qctrl(&qctrl, sizeof(qctrl)) != 0)
-		return (ADE_AUDITON);
+	// if (audit_get_qctrl(&qctrl, sizeof(qctrl)) != 0)
+	//         return (ADE_AUDITON);
 
 	if (qctrl.aq_minfree != auditd_minval) {
 		qctrl.aq_minfree = auditd_minval;
@@ -736,8 +736,8 @@ auditd_set_qsize(void)
 	if (getacqsize(&qsz) != 0)
 		return (ADE_PARSE);
 
-	if (audit_get_qctrl(&au_qctrl, sizeof(au_qctrl)) != 0)
-		return (ADE_AUDITON);
+	// if (audit_get_qctrl(&au_qctrl, sizeof(au_qctrl)) != 0)
+	//         return (ADE_AUDITON);
 	if (qsz != USE_DEFAULT_QSZ)
 		au_qctrl.aq_hiwater = qsz;
 	if (audit_set_qctrl(&au_qctrl, sizeof(au_qctrl)) != 0)
