@@ -1098,8 +1098,6 @@ audit_quick_stop(void)
 	/*
 	 * Auditing already disabled?
 	 */
-	if (audit_get_cond(&cond) != 0)
-		return (-1);
 	if (cond == AUC_NOAUDIT)
 		return (0);
 
@@ -1112,8 +1110,6 @@ audit_quick_stop(void)
 	 * Shutdown auditing in the kernel.
 	 */
 	cond = AUC_DISABLED;
-	if (audit_set_cond(&cond) != 0)
-		return (-1);
 #ifdef	__BSM_INTERNAL_NOTIFY_KEY
 	notify_post(__BSM_INTERNAL_NOTIFY_KEY);
 #endif

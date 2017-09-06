@@ -494,40 +494,6 @@ audit_token_to_au32(audit_token_t atoken, uid_t *auidp, uid_t *euidp,
 #endif /* !__APPLE__ */
 
 int
-audit_get_cond(int *cond)
-{
-	int ret;
-
-	ret = auditon(A_GETCOND, cond, sizeof(*cond));
-#ifdef A_OLDGETCOND
-	if ((0 != ret) && EINVAL == errno) {
-		long lcond = *cond;
-
-		ret = auditon(A_OLDGETCOND, &lcond, sizeof(lcond));
-		*cond = (int)lcond;
-	}
-#endif
-	return (ret);
-}
-
-int
-audit_set_cond(int *cond)
-{
-	int ret;
-
-	ret = auditon(A_SETCOND, cond, sizeof(*cond));
-#ifdef A_OLDSETCOND
-	if ((0 != ret) && (EINVAL == errno)) {
-		long lcond = (long)*cond;
-
-		ret = auditon(A_OLDSETCOND, &lcond, sizeof(lcond));
-		*cond = (int)lcond;
-	}
-#endif
-	return (ret);
-}
-
-int
 audit_get_policy(int *policy)
 {
 	int ret;
