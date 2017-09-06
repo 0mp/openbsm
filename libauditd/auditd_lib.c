@@ -809,11 +809,12 @@ open_trail(char *fname, gid_t gid, int *errorp)
 		return (-1);
 	}
 	(void) close(fd);
-	if (auditctl(fname) < 0) {
-		*errorp = errno;
-		(void) unlink(fname);
-		return (-1);
-	}
+	// XXX0MP: Might be useful later.
+	// if (auditctl(fname) < 0) {
+	//         *errorp = errno;
+	//         (void) unlink(fname);
+	//         return (-1);
+	// }
 	(void) auditdist_link(fname);
 	return (0);
 }
