@@ -348,8 +348,8 @@ auditd_set_minfree(void)
 
 	if (qctrl.aq_minfree != auditd_minval) {
 		qctrl.aq_minfree = auditd_minval;
-		if (audit_set_qctrl(&qctrl, sizeof(qctrl)) != 0)
-			return (ADE_AUDITON);
+		// if (audit_set_qctrl(&qctrl, sizeof(qctrl)) != 0)
+		//         return (ADE_AUDITON);
 	}
 
 	return (0);
@@ -740,8 +740,8 @@ auditd_set_qsize(void)
 	//         return (ADE_AUDITON);
 	if (qsz != USE_DEFAULT_QSZ)
 		au_qctrl.aq_hiwater = qsz;
-	if (audit_set_qctrl(&au_qctrl, sizeof(au_qctrl)) != 0)
-		return (ADE_AUDITON);
+	// if (audit_set_qctrl(&au_qctrl, sizeof(au_qctrl)) != 0)
+	//         return (ADE_AUDITON);
 
 	return (ADE_NOERR);
 }
