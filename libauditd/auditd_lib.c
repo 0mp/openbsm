@@ -1059,7 +1059,6 @@ audit_quick_start(void)
 	 *  Configure the audit controls.
 	 */
 	(void) auditd_set_evcmap();
-	(void) auditd_set_namask();
 	(void) auditd_set_policy();
 	(void) auditd_set_fsize();
 	(void) auditd_set_minfree();
