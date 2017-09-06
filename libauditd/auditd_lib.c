@@ -934,8 +934,6 @@ auditd_gen_record(int event, char *path)
 		au_write(aufd, tok);
 	if ((tok = au_to_return32(0, 0)) != NULL)
 		au_write(aufd, tok);
-	if (au_close(aufd, 1, event) == -1)
-		return (ADE_AU_CLOSE);
 
 	return (ADE_NOERR);
 }
