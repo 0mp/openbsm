@@ -712,13 +712,8 @@ auditd_set_policy(void)
 	if (getacpol(polstr, POL_STR_SIZE) != 0 ||
 	    au_strtopol(polstr, &policy) != 0) {
 		policy = AUDIT_CNT;
-		if (audit_set_policy(&policy) != 0)
-			return (ADE_AUDITON);
 		return (ADE_PARSE);
 	}
-
-	if (audit_set_policy(&policy) != 0)
-		return (ADE_AUDITON);
 
 	return (ADE_NOERR);
 }
