@@ -292,9 +292,9 @@ auditd_set_host(void)
 		 */
 		bzero(&aia, sizeof(aia));
 		aia.ai_termid.at_type = AU_IPv4;
-		error = audit_set_kaudit(&aia, sizeof(aia));
-		if (error < 0 && errno != ENOSYS)
-			ret = ADE_AUDITON;
+		// error = audit_set_kaudit(&aia, sizeof(aia));
+		// if (error < 0 && errno != ENOSYS)
+		//         ret = ADE_AUDITON;
 		return (ret);
 	}
 	auditd_hostlen = strlen(auditd_host);
@@ -322,8 +322,8 @@ auditd_set_host(void)
 		return (ADE_ADDRFAM);
 	}
 
-	if (audit_set_kaudit(&aia, sizeof(aia)) < 0)
-		ret = ADE_AUDITON;
+	// if (audit_set_kaudit(&aia, sizeof(aia)) < 0)
+	//         ret = ADE_AUDITON;
 
 	return (ret);
 }
