@@ -82,8 +82,10 @@ proto_descriptor_send(int sock, int fd)
 	cmsg->cmsg_len = CMSG_LEN(sizeof(fd));
 	bcopy(&fd, CMSG_DATA(cmsg), sizeof(fd));
 
+	adamlog("sending the fd");
 	if (sendmsg(sock, &msg, 0) == -1)
 		return (errno);
+	adamlog("fd");
 
 	return (0);
 }
@@ -209,8 +211,10 @@ proto_common_recv(int sock, unsigned char *data, size_t size, int *fdp)
 	PJDLOG_ASSERT(data != NULL);
 	PJDLOG_ASSERT(size > 0);
 
+	adamlog("starting the recv loop with %zuB", size);
 	do {
 		done = recv(sock, data, size, MSG_WAITALL);
+		adamlog("recv attempt: %zd %d %d", done, errno, EINTR);
 	} while (done == -1 && errno == EINTR);
 	if (done == 0) {
 		return (ENOTCONN);
@@ -225,7 +229,11 @@ proto_common_recv(int sock, unsigned char *data, size_t size, int *fdp)
 			errno = ETIMEDOUT;
 		return (errno);
 	}
-	if (fdp == NULL)
-		return (0);
-	return (proto_descriptor_recv(sock, fdp));
+	adamlog("received data: %.*s", (int)done, data);
+	if (fdp != NULL) {
+		adamlog("trying to get the descriptor");
+		int e = (proto_descriptor_recv(sock, fdp));
+		if (e != 0) return e;
+	}
+	return (0);
 }

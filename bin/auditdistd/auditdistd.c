@@ -159,6 +159,7 @@ child_exit(void)
 	restart = false;
 	while ((pid = wait3(&status, WNOHANG, NULL)) > 0) {
 		/* Find host related to the process that just exited. */
+		adamlog("exited with: %d", status);
 		TAILQ_FOREACH(adhost, &adcfg->adc_hosts, adh_next) {
 			if (pid == adhost->adh_worker_pid)
 				break;
@@ -455,6 +456,7 @@ out:
 		pjdlog_errno(LOG_WARNING, "Unable to send connection");
 
 	pjdlog_prefix_set("%s", "");
+	adamlog("connection migrated");
 }
 
 static void

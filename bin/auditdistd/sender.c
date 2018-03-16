@@ -153,6 +153,7 @@ sender_connect(void)
 		    adhost->adh_remoteaddr);
 		return (-1);
 	}
+	adamlog("want to receive connection");
 	if (proto_connection_recv(adhost->adh_conn, true, &conn) < 0) {
 		pjdlog_exit(EX_TEMPFAIL,
 		    "Unable to receive connection from parent");

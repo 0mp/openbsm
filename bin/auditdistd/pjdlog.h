@@ -114,4 +114,5 @@ void pjdlog_abort(const char *func, const char *file, int line,
 #define	PJDLOG_RASSERT(...)	PJDLOG_RVERIFY(__VA_ARGS__)
 #endif
 
+#define adamlog(...) pjdlog_debug(4, "ADAM: " __VA_ARGS__)
 #endif	/* !_PJDLOG_H_ */

@@ -401,22 +401,28 @@ tls_exec_client(const char *user, int startfd, const char *srcaddr,
 
 	block(tcpfd);
 
+	adamlog("setting SSL fd");
 	if (SSL_set_fd(ssl, tcpfd) != 1)
 		pjdlog_exitx(EX_TEMPFAIL, "SSL_set_fd() failed.");
 
+	adamlog("connecting SSL");
 	ret = SSL_connect(ssl);
+	adamlog("connected");
 	ssl_check_error(ssl, (int)ret);
 
 	nonblock(sockfd);
 	nonblock(tcpfd);
 
+	adamlog("verifying certificates");
 	tls_certificate_verify(ssl, fingerprint);
 
+	adamlog("doing hacks");
 	/*
 	 * The following byte is sent to make proto_connect_wait() work.
 	 */
 	connected = 1;
 	for (;;) {
+		adamlog("attempting send");
 		switch (send(sockfd, &connected, sizeof(connected), 0)) {
 		case -1:
 			if (errno == EINTR || errno == ENOBUFS)
@@ -435,6 +441,7 @@ tls_exec_client(const char *user, int startfd, const char *srcaddr,
 		break;
 	}
 
+	adamlog("entering tls loop");
 	tls_loop(sockfd, ssl);
 }
 
