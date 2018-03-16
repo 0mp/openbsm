@@ -423,7 +423,7 @@ tls_exec_client(const char *user, int startfd, const char *srcaddr,
 	connected = 1;
 	for (;;) {
 		adamlog("attempting send");
-		switch (send(sockfd, &connected, sizeof(connected), 0)) {
+		switch (send(sockfd, &connected, sizeof(connected), MSG_NOSIGNAL)) {
 		case -1:
 			if (errno == EINTR || errno == ENOBUFS)
 				continue;
