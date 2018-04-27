@@ -182,7 +182,8 @@ proto_descriptor_recv(int sock, int *fdp)
 		return (errno);
 
 	cmsg = CMSG_FIRSTHDR(&msg);
-	if (cmsg->cmsg_level != SOL_SOCKET ||
+	if (cmsg == NULL ||
+	    cmsg->cmsg_level != SOL_SOCKET ||
 	    cmsg->cmsg_type != SCM_RIGHTS) {
 		return (EINVAL);
 	}
